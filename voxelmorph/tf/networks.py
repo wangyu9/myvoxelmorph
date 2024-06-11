@@ -1114,7 +1114,7 @@ class Unet(tf.keras.Model):
         elif nb_levels is not None:
             raise ValueError('cannot use nb_levels if nb_features is not an integer')
 
-        ndims = len(unet_input.get_shape()) - 2
+        ndims = unet_input.ndim - 2 # wangyu, original: len(unet_input.get_shape()) - 2
         assert ndims in (1, 2, 3), 'ndims should be one of 1, 2, or 3. found: %d' % ndims
         MaxPooling = getattr(KL, 'MaxPooling%dD' % ndims)
 
@@ -1697,7 +1697,7 @@ def _conv_block(x, nfeat, strides=1, name=None, do_res=False, hyp_tensor=None,
     """
     Specific convolutional block followed by leakyrelu for unet.
     """
-    ndims = len(x.get_shape()) - 2
+    ndims = x.ndim - 2 # wangyu: len(x.get_shape()) - 2
     assert ndims in (1, 2, 3), 'ndims should be one of 1, 2, or 3. found: %d' % ndims
 
     extra_conv_params = {}
@@ -1732,7 +1732,7 @@ def _upsample_block(x, connection, factor=2, name=None):
     """
     Specific upsampling and concatenation layer for unet.
     """
-    ndims = len(x.get_shape()) - 2
+    ndims = x.ndim - 2  # wangyu: len(x.get_shape()) - 2
     assert ndims in (1, 2, 3), 'ndims should be one of 1, 2, or 3. found: %d' % ndims
     UpSampling = getattr(KL, 'UpSampling%dD' % ndims)
 
