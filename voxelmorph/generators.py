@@ -104,7 +104,7 @@ def scan_to_scan(vol_names, bidir=False, batch_size=1, prob_same=0, no_warp=Fals
         if not no_warp:
             outvols.append(zeros)
         
-        yield (tuple(invols), tuple(outvols)) # wangyu: yield (invols, outvols)
+        yield tuple(invols), tuple(outvols) # wangyu: yield (invols, outvols)
         # https://stackoverflow.com/questions/12836128/convert-list-to-tuple-in-python
 
 
@@ -141,7 +141,7 @@ def scan_to_atlas(vol_names, atlas, bidir=False, batch_size=1, no_warp=False, se
             outvols = [seg, scan] if bidir else [seg]
         if not no_warp:
             outvols.append(zeros)
-        yield (tuple(invols), tuple(outvols)) # wangyu: yield (invols, outvols)
+        yield tuple(invols), tuple(outvols) # wangyu: yield (invols, outvols)
 
 
 def semisupervised(vol_names, seg_names, labels, atlas_file=None, downsize=2):
