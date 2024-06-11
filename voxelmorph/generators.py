@@ -103,7 +103,8 @@ def scan_to_scan(vol_names, bidir=False, batch_size=1, prob_same=0, no_warp=Fals
         outvols = [scan2, scan1] if bidir else [scan2]
         if not no_warp:
             outvols.append(zeros)
-        
+
+        print(f'debug wangyu: {tuple(invols), tuple(outvols)}')
         yield tuple(invols), tuple(outvols) # wangyu: yield (invols, outvols)
         # https://stackoverflow.com/questions/12836128/convert-list-to-tuple-in-python
 
