@@ -192,7 +192,7 @@ def semisupervised(vol_names, seg_names, labels, atlas_file=None, downsize=2):
 
         invols = [src_vol, trg_vol, src_seg]
         outvols = [trg_vol, zeros, trg_seg]
-        yield (tuple(invols), tuple(outvols)) # wangyu: yield (invols, outvols)
+        yield tuple(invols), tuple(outvols) # wangyu: yield (invols, outvols)
 
 
 def template_creation(vol_names, bidir=False, batch_size=1, **kwargs):
@@ -217,7 +217,7 @@ def template_creation(vol_names, bidir=False, batch_size=1, **kwargs):
 
         invols = [scan]
         outvols = [scan, zeros, zeros, zeros] if bidir else [scan, zeros, zeros]
-        yield (tuple(invols), tuple(outvols)) # wangyu: yield (invols, outvols)
+        yield tuple(invols), tuple(outvols) # wangyu: yield (invols, outvols)
 
 
 def conditional_template_creation(vol_names, atlas, attributes,
@@ -251,7 +251,7 @@ def conditional_template_creation(vol_names, atlas, attributes,
 
         invols = [pheno, atlas, vols]
         outvols = [vols, zeros, zeros, zeros]
-        yield (tuple(invols), tuple(outvols)) # wangyu:  yield (invols, outvols)
+        yield tuple(invols), tuple(outvols) # wangyu:  yield (invols, outvols)
 
 
 def surf_semisupervised(
@@ -416,7 +416,7 @@ def surf_semisupervised(
             inputs = [X_ret, atlas_ret, X_sdt_k, atlas_surface_pts]
             outputs = [atlas_ret, X_ret, zero_flow, zero_surface_values]
 
-        yield (tuple(invols), tuple(outvols)) # wangyu: yield (inputs, outputs)
+        yield tuple(invols), tuple(outvols) # wangyu: yield (inputs, outputs)
 
 
 def synthmorph(label_maps, batch_size=1, same_subj=False, flip=True):
